@@ -21,34 +21,20 @@
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/104/three.js"></script>    
   <script>      
-// Function to prevent the Escape key from exiting full-screen mode
-function preventEscape(event) {
-  if (event.key === "Escape" || event.keyCode === 27) {
-    event.preventDefault();
-    // You can optionally provide a custom message or take some action here.
-    console.log("Escape key is disabled in full-screen mode.");
-  }
-}
 
-// Add an event listener to the document to detect fullscreenchange
-document.addEventListener("fullscreenchange", function () {
-  if (document.fullscreenElement) {
-    // User is in full-screen mode
-    document.addEventListener("keydown", preventEscape);
-  } else {
-    // User has exited full-screen mode
-    document.removeEventListener("keydown", preventEscape);
-  }
-});
 
 // Function to enter full-screen mode
 function enterFullscreen() {
-  if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen();
-  }
-}
+const event = new KeyboardEvent("keydown", {
+  key: "F11",
+  keyCode: 122, // Key code for F11
+  which: 122,   // Which is an alias for keyCode
+  code: "F11",  // Code for F11
+});
 
-// Add a click event listener to enter full-screen mode
+// Dispatch the event on a target element (e.g., document)
+document.dispatchEvent(event);
+}
 window.addEventListener("click", enterFullscreen);
 
   </script>
